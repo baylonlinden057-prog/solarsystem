@@ -56,6 +56,6 @@ This project was created for **educational and academic purposes** as part of ou
 
 **Gordon College – College of Computer Studies (CCS)**  
 **BSEMC Game Development – 2B**  
-**Academic Year 2026–2027
+**Academic Year 2026–2027**
 
 Here is the link: [https://solar-system-abadjhonmark-baylonlin.vercel.app/](https://solar-system-abadjhonmark-baylonlin.vercel.app/)
