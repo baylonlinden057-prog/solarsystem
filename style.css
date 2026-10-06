@@ -1,0 +1,324 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000005;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #e0e6ed;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Glassmorphism Panel Common Styling */
+.glass-panel {
+    position: absolute;
+    z-index: 10;
+    background: rgba(12, 16, 28, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+    border-radius: 14px;
+    padding: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Main Control UI Panel */
+#ui-container {
+    top: 20px;
+    left: 20px;
+    width: 300px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Controls */
+#ui-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+#ui-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+header h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+header .subtitle {
+    font-size: 0.72rem;
+    color: #8a99ad;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-group {
+    margin-bottom: 14px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #b0c0d0;
+    margin-bottom: 6px;
+}
+
+/* Buttons */
+.button-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-secondary {
+    width: 100%;
+    background: rgba(64, 150, 255, 0.15);
+    border-color: rgba(64, 150, 255, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(64, 150, 255, 0.3);
+}
+
+.btn-primary {
+    width: 100%;
+    margin-top: 15px;
+    background: #2563eb;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.btn-primary:hover {
+    background: #3b82f6;
+}
+
+/* Sliders and Inputs */
+input[type=range] {
+    width: 100%;
+    accent-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.1);
+    height: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    background: rgba(15, 22, 36, 0.95);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Checkboxes */
+.checkboxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    cursor: pointer;
+}
+
+/* Info Panel */
+#info-panel {
+    top: 20px;
+    right: 20px;
+    width: 310px;
+}
+
+#info-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+}
+
+.close-btn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #8a99ad;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #ffffff;
+}
+
+#info-name {
+    font-size: 1.45rem;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    background: rgba(59, 130, 246, 0.25);
+    color: #60a5fa;
+    padding: 3px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    margin-bottom: 12px;
+}
+
+.badge-blackhole {
+    background: rgba(168, 85, 247, 0.25);
+    color: #c084fc;
+    border-color: rgba(168, 85, 247, 0.5);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 12px;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+
+.info-item .label {
+    color: #8a99ad;
+}
+
+.info-item .value {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Planet Labels Overlay Layer */
+#labels-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.planet-label {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 4px #000, 0 0 8px #000;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Special Black Hole Label Styling */
+.planet-label.blackhole-label {
+    background: rgba(147, 51, 234, 0.6);
+    border-color: rgba(192, 132, 252, 0.8);
+    color: #f3e8ff;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+}
+
+/* Instructions Tip */
+#instruction-tip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+    background: rgba(10, 14, 23, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #a0aec0;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    #ui-container {
+        width: calc(100% - 40px);
+        top: auto;
+        bottom: 60px;
+        max-height: 35vh;
+    }
+
+    #info-panel {
+        width: calc(100% - 40px);
+        top: 20px;
+        right: 20px;
+    }
+
+    #instruction-tip {
+        display: none;
+    }
+}

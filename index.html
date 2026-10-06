@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System Simulation with Black Hole & Pluto</title>
+
+    <!-- Three.js and OrbitControls CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- WebGL Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- 2D Dynamic Labels Overlay -->
+    <div id="labels-container"></div>
+
+    <!-- Main Floating Glassmorphism Controls -->
+    <div id="ui-container" class="glass-panel">
+        <header>
+            <h1>SOLAR SYSTEM</h1>
+            <p class="subtitle">Interactive 3D Simulation</p>
+        </header>
+
+        <section class="control-group">
+            <div class="button-row">
+                <button id="btn-play-pause" class="btn active">PAUSE</button>
+                <button id="btn-reset-sim" class="btn">RESET SIM</button>
+            </div>
+        </section>
+
+        <section class="control-group">
+            <label for="speed-slider">Simulation Speed: <span id="speed-value">1.0x</span></label>
+            <input type="range" id="speed-slider" min="0.25" max="10" step="0.25" value="1">
+        </section>
+
+        <section class="control-group checkboxes">
+            <label class="toggle-label">
+                <input type="checkbox" id="chk-orbits" checked>
+                <span class="toggle-text">Show Orbits</span>
+            </label>
+            <label class="toggle-label">
+                <input type="checkbox" id="chk-labels" checked>
+                <span class="toggle-text">Show Labels</span>
+            </label>
+        </section>
+
+        <section class="control-group">
+            <label for="planet-select">Quick Select Object:</label>
+            <select id="planet-select">
+                <option value="Sun">Sun</option>
+                <option value="Mercury">Mercury</option>
+                <option value="Venus">Venus</option>
+                <option value="Earth">Earth</option>
+                <option value="Mars">Mars</option>
+                <option value="Jupiter">Jupiter</option>
+                <option value="Saturn">Saturn</option>
+                <option value="Uranus">Uranus</option>
+                <option value="Neptune">Neptune</option>
+                <option value="Pluto">Pluto</option>
+                <option value="BlackHole">Black Hole</option>
+            </select>
+        </section>
+
+        <section class="control-group">
+            <button id="btn-reset-camera" class="btn btn-secondary">RESET CAMERA</button>
+        </section>
+    </div>
+
+    <!-- Info Panel -->
+    <div id="info-panel" class="glass-panel hidden">
+        <button id="btn-close-info" class="close-btn">&times;</button>
+        <h2 id="info-name">Earth</h2>
+        <span id="info-type" class="badge">Terrestrial Planet</span>
+        <hr>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Diameter:</span>
+                <span id="info-diameter" class="value">12,742 km</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Dist. from Sun:</span>
+                <span id="info-distance" class="value">149.6M km</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Orbital Period:</span>
+                <span id="info-period" class="value">365.25 Days</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Rotation Period:</span>
+                <span id="info-rotation" class="value">24 Hours</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Known Moons:</span>
+                <span id="info-moons" class="value">1</span>
+            </div>
+        </div>
+        <button id="btn-focus-planet" class="btn btn-primary">FOCUS ON OBJECT</button>
+    </div>
+
+    <!-- Instruction Overlay Tip -->
+    <div id="instruction-tip">
+        <p>💡 Drag: Rotate Camera | Right Drag: Pan | Scroll: Zoom | Click Object: Inspect</p>
+    </div>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+</body>
+</html>
